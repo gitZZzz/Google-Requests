@@ -4,16 +4,19 @@ import pandas as pd
 
 
 class GoogleRequests(object):
+    """
+    requests爬取谷歌关键字结果
+    """
     def __init__(self):
-
+        """
         # 创建google.mdb数据库和游标
         if os.path.exists(r'google.mdb') == False:  # 检查是否存在数据库文件
             pypyodbc.win_create_mdb('google.mdb')  # 创建access数据库
-
         self.BASE_DIR = os.path.dirname(__file__)  # 获取当前文件夹的绝对路径
         self.file_path = os.path.join(self.BASE_DIR, 'google.mdb')
-        self.conn = pypyodbc.connect("Driver={Microsoft Access Driver (*.mdb)};DBQ=" + file_path)
+        self.conn = pypyodbc.connect("Driver={Microsoft Access Driver (*.mdb)};DBQ=" + self.file_path)
         self.cur = self.conn.cursor()
+        """
 
     def read_excel(self):
         """
@@ -58,9 +61,9 @@ class GoogleRequests(object):
         pages = int(input('请输入查询的前几页的页数:'))
 
         # 3.创建mdb数据库和表,并清空表数据
-        self.access()
-        self.cur.execute("delete from Content")
-        self.cur.commit()
+        # self.access()
+        # self.cur.execute("delete from Content")
+        # self.cur.commit()
 
         # 4.遍历搜索关键字列表
         for k in keyword_lt:
